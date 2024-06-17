@@ -1,5 +1,5 @@
 import React, { useEffect , useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import Sidebar from './Components/Sidebar';
 import Home from './pages/Home';
 import Routine from './pages/Routine';
@@ -9,7 +9,9 @@ import Password from './pages/Passwords';
 import Signup from './Login/Signup/Signup';
 import axios from 'axios'
 
+
 function App() {
+  const navigate=useNavigate();
   const apiUrl = import.meta.env.VITE_API_URL;
     const [login_obj, setlogin_obj] = useState({})
     const token=localStorage.getItem('token');
@@ -19,7 +21,7 @@ function App() {
         setlogin_obj(data);
         if(!data.success){
           localStorage.removeItem('token');
-          window.location='/signup';
+          navigate('/signup');
         }
       }
       if(token){
