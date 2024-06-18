@@ -80,29 +80,31 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import usercontext from "../context/userContext";
 import { Toaster, toast } from "react-hot-toast";
-import logo from "../assets/android-chrome-192x192.png";
+import logo from "../assets/logo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const session = useContext(usercontext);
-  
+
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
 
   return (
     <div>
-      <div className="flex justify-between items-center p-4 bg-[#101010] text-white">
+      <div className="flex justify-between items-center mb-10 p-4 bg-[#101010] text-white">
         <Toaster />
         <div className="flex items-center">
           <span className="text-3xl cursor-pointer" onClick={toggleNavbar}>
             &#9776;
           </span>
         </div>
-        <div className="opacity-0 lg:opacity-100 text-center flex text-2xl italic space-x-2">
-          <img src={logo} alt="logo" className="w-10 h-10 "></img>
-          <span className="">
-            My<span className="text-4xl">V</span>ault
-          </span>
+        <div
+          onClick={() => {
+            window.location = "/";
+          }}
+          className="opacity-0 hover:cursor-pointer lg:opacity-100 text-center flex text-2xl italic space-x-2"
+        >
+          <img src={logo} alt="logo" className=" w-32 h-12 "></img>
         </div>
 
         {!session?.success ? (
@@ -115,7 +117,7 @@ const Navbar = () => {
               >
                 <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
               </svg>
-              <span className="text">Sign in</span>
+              <span className="text pl-[0.83rem]">Sign In</span>
               <span className="circle"></span>
               <svg
                 viewBox="0 0 24 24"
@@ -161,11 +163,13 @@ const Navbar = () => {
         <div className="fixed z-50 inset-y-0 left-0 w-64 bg-[#101010] border-gray-500 border-r-2 text-white p-4 flex flex-col justify-between">
           <div>
             <div className="flex justify-between mt-3 lg:mt-0">
-              <div className="opacity-100  lg:opacity-0 flex font-sans text-center ml-12 text-lg italic ">
-                <img src={logo} alt="logo" className="w-8 h-8 "></img>
-                <span className="">
-                  &nbsp;My<span className="text-2xl">V</span>ault
-                </span>
+              <div
+                onClick={() => {
+                  window.location = "/";
+                }}
+                className="opacity-100  lg:opacity-0 flex font-sans text-center ml-12 text-lg italic "
+              >
+                <img src={logo} alt="logo" className="w-18 h-10 "></img>
               </div>
               <button
                 className="text-2xl border-2 px-1 rounded-lg"
@@ -220,7 +224,10 @@ const Navbar = () => {
                 </>
               )}
               <hr />
-              <div className="flex mt-2 space-x-4">
+              <footer className=" text-gray-400 px-4 pt-3 text-sm text-center">
+                <p>&copy; 2024 MySafeVault. All rights reserved.</p>
+              </footer>
+              <div className="flex mt-2 space-x-4 justify-center items-center">
                 <a href="#" className="text-gray-400 hover:text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
